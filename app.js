@@ -19,14 +19,14 @@ headers: {
 //Set full Shopify request url (currently 1 for testing)
 const shopify_url=`https://${shopify_api_key}:${shopify_pw}@${store}.myshopify.com/admin/api/${api_version}/orders.json?status=closed`;
 
-// Convert shopify dates to Zaius required unix time format
+// Fucntion to be used that converts shopify dates to Zaius required unix time format
 const unix_convert = date => {
   let d = new Date(date);
   let seconds = d.getTime() / 1000;
   return seconds;
 };
 
-// construct the order object. Currently it just as the base properties shown here (https://docs.developers.zaius.com/api/rest-api/orders)
+// construct the order object. Currently it just as the base properties shown here (https://docs.developers.zaius.com/api/rest-api/orders), but you can add properties as needed and reference the Shopify order schema (https://help.shopify.com/en/themes/liquid/objects/order) to add using the same syntax as others. 
 const constructOrders = ( data ) => {
   const fulfilledOrders = data.orders.map(order => ({
     type: "order",
@@ -79,7 +79,7 @@ return axios
 }); 
 }
 
-// Post orders to Zaius using the events endpoint and log succes or error status
+// Post orders to Zaius using the events endpoint, the individual order object, and our config variable and log succes or error status (https://github.com/axios/axios)
 const postOrders = (order) => {
   axios.post("https://api.zaius.com/v3/events", 
   order, config)
