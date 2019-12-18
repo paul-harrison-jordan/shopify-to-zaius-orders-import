@@ -3,10 +3,10 @@ require('dotenv').config();
 // must install axios to make api calls to Zaius and Shopify
 const axios = require('axios').default;
 //set Shopify access variables from .env file
-const shopify_api_key=process.env.api_key;
-const shopify_pw=process.env.password;
-const store=process.env.website;
-const api_version=process.env.version;
+const shopify_api_key=process.env.shopify_api_key;
+const shopify_pw=process.env.shopify_password;
+const store=process.env.shopify_website;
+const api_version=process.env.shopify_version;
 const zaius_api_key=process.env.zaius_api;
 
 // set headers to make successful post requests to Zaius events endpoint
